@@ -128,25 +128,18 @@ bool GrafoMatriz::dfs(int origen, int sumidero, std::vector<int>& ruta) {
 
 
 void GrafoMatriz::fordFulkerson(int origen, int sumidero) {
+    int maxFlujo = 0;
+    std::vector<int> ruta;
 
-    int maxFlujo = 0; //variable para contar el flujo
-
-    std::vector<int> ruta; //vector para almacenar la ruta encontrada
-
-
-    //ciclo que se ejecuta mientras se pueda encontrar una ruta
     while (dfs(origen, sumidero, ruta)) {
-
         int capacidadMinima = INT_MAX;
 
-        //busca la capicidad minima
         for (size_t i = 1; i < ruta.size(); i++) {
             int u = ruta[i - 1];
             int v = ruta[i];
-            capacidadMinima = std::min(capacidadMinima, matriz[u][v]); //para almacenar la capacidad minima
+            capacidadMinima = std::min(capacidadMinima, matriz[u][v]);
         }
 
-        //actualiza el valor de las aristas (caminos)
         for (size_t i = 1; i < ruta.size(); i++) {
             int u = ruta[i - 1];
             int v = ruta[i];
@@ -154,12 +147,19 @@ void GrafoMatriz::fordFulkerson(int origen, int sumidero) {
             matriz[v][u] += capacidadMinima;
         }
 
-        maxFlujo += capacidadMinima;//se actualiza el valor de flujo maximo
+        maxFlujo += capacidadMinima;
 
         // Muestra el flujo y la matriz
         std::cout << "Flujo maximo: " << maxFlujo << std::endl;
         imprimirGrafo();
-        std::cout<<std::endl<<".........cargando"<<std::endl<<std::endl;
+        std::cout <<std::endl<< "Ruta seleccionada: "<<std::endl;
+        for (size_t i = 0; i < ruta.size(); i++) {
+            std::cout << ruta[i] + 1; // Sumamos 1 para mostrar el nodo con numeración a partir de 1
+            if (i != ruta.size() - 1) {
+                std::cout << " -> ";
+            }
+        }
+        std::cout << std::endl << ".........cargando" << std::endl << std::endl;
         sleep(3);
 
         // Reiniciar el vector visitado y el camino para el próximo aumento del flujo

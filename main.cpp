@@ -1,5 +1,11 @@
 // main.cpp
 
+//integrantes
+
+//David Fernando Perez Medina
+//Luisa Fernanda Quintero Ramírez
+//Lara Salcedo Franco
+
 #include "grafomatri.h"
 #include <iostream>
 #include <unistd.h>

@@ -8,15 +8,15 @@
 
 
 //calse grafo matriz
-class GraphMatrix {
+class GrafoMatriz {
 
     //atributos
     private:
 
         //numero de nodos
-        int numNodes;
+        int numNodos;
         //puntero de matriz
-        int** matrix;
+        int** matriz;
         //estado de visita(seguimiento de nodos)
         bool* visited;
 
@@ -24,17 +24,17 @@ class GraphMatrix {
 //metodos
 public:
 
-    GraphMatrix(int nodes);
+    GrafoMatriz(int nodes);
 
-    ~GraphMatrix();
+    ~GrafoMatriz();
 
-    void addEdge(int source, int destination, int weight);
+    void agregarArista(int origen, int destino, int peso);
 
-    void printGraph();
+    void imprimirGrafo();
 
-    bool dfs(int source, int sink, std::vector<int>& path);
+    bool dfs(int origen, int sumidero, std::vector<int>& ruta);
 
-    void fordFulkerson(int source, int sink);
+    void fordFulkerson(int origen, int sumidero);
 };
 
 #endif // GRAFOMATRI_H
